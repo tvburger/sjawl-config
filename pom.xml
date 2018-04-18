@@ -1,0 +1,25 @@
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.tvburger.sjawl</groupId>
+    <artifactId>sjawl-config</artifactId>
+    <version>0.9.0</version>
+
+    <packaging>pom</packaging>
+    <name>Standard Java Configuration Library</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>common</module>
+        <module>api</module>
+        <module>properties</module>
+        <module>example</module>
+    </modules>
+
+</project>

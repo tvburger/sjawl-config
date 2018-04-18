@@ -1,0 +1,15 @@
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.tvburger.sjawl</groupId>
+        <artifactId>sjawl-config</artifactId>
+        <version>0.9.0</version>
+    </parent>
+
+    <artifactId>sjawl-common</artifactId>
+
+    <name>Sjawl :: Common</name>
+
+</project>

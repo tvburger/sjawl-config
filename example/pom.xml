@@ -1,0 +1,50 @@
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.tvburger.sjawl</groupId>
+        <artifactId>sjawl-config</artifactId>
+        <version>0.9.0</version>
+    </parent>
+
+    <artifactId>sjawl-config-example</artifactId>
+
+    <name>Sjawl :: Configuration :: Example</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.tvburger.sjawl</groupId>
+            <artifactId>sjawl-config-api</artifactId>
+            <version>0.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.tvburger.sjawl</groupId>
+            <artifactId>sjawl-config-properties</artifactId>
+            <version>0.9.0</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <config.dir>${project.build.testOutputDirectory}/config</config.dir>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
