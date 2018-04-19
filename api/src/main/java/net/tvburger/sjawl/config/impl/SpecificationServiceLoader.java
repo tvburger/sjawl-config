@@ -1,7 +1,7 @@
 package net.tvburger.sjawl.config.impl;
 
 import net.tvburger.sjawl.config.*;
-import net.tvburger.sjawl.config.ext.SpecificationLoader;
+import net.tvburger.sjawl.config.spi.SpecificationLoader;
 
 import java.io.IOException;
 import java.util.ServiceLoader;
