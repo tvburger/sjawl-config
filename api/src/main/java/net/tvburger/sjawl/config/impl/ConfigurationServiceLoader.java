@@ -43,16 +43,37 @@ public final class ConfigurationServiceLoader implements ConfigurationProvider {
     }
 
     @Override
+    public <T extends Configuration> boolean hasConfiguration(Class<T> configurationTypeClass) {
+        synchronized (serviceLoader) {
+            for (ConfigurationParser parser : serviceLoader) {
+                if (parser.supportsConfiguration(configurationTypeClass)) {
+                    return parser.supportsDefaultConfiguration(configurationTypeClass) || specificationProvider.hasSpecification(toSpecificationName(configurationTypeClass));
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
     public <T extends Configuration> T getConfiguration(Class<T> configurationTypeClass) throws NoSuchConfigurationException, NoSuchSpecificationException, IOException, SpecificationFormatException, InvalidSpecificationException {
         synchronized (serviceLoader) {
             for (ConfigurationParser parser : serviceLoader) {
                 if (parser.supportsConfiguration(configurationTypeClass)) {
-                    Specification specification = specificationProvider.getSpecification(configurationTypeClass.getName());
-                    return parser.parseConfiguration(specification, configurationTypeClass);
+                    String specificationName = toSpecificationName(configurationTypeClass);
+                    if (specificationProvider.hasSpecification(specificationName)) {
+                        Specification specification = specificationProvider.getSpecification(toSpecificationName(configurationTypeClass));
+                        return parser.parseConfiguration(specification, configurationTypeClass);
+                    } else if (parser.supportsDefaultConfiguration(configurationTypeClass)) {
+                        return parser.getDefaultConfiguration(configurationTypeClass);
+                    }
                 }
             }
             throw new NoSuchConfigurationException(configurationTypeClass);
         }
+    }
+
+    private <T extends Configuration> String toSpecificationName(Class<T> configurationTypeClass) {
+        return configurationTypeClass.getName();
     }
 
 }

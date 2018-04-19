@@ -21,6 +21,8 @@ public interface SpecificationProvider {
 
     }
 
+    boolean hasSpecification(String specificationName);
+
     Specification getSpecification(String specificationName) throws NoSuchSpecificationException, IOException, SpecificationFormatException;
 
 }

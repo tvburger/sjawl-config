@@ -1,6 +1,9 @@
 package net.tvburger.sjawl.config.impl;
 
-import net.tvburger.sjawl.config.*;
+import net.tvburger.sjawl.config.NoSuchSpecificationException;
+import net.tvburger.sjawl.config.Specification;
+import net.tvburger.sjawl.config.SpecificationFormatException;
+import net.tvburger.sjawl.config.SpecificationProvider;
 import net.tvburger.sjawl.config.spi.SpecificationLoader;
 
 import java.io.IOException;
@@ -36,6 +39,18 @@ public final class SpecificationServiceLoader implements SpecificationProvider {
 
     private SpecificationServiceLoader(ServiceLoader<SpecificationLoader> serviceLoader) {
         this.serviceLoader = serviceLoader;
+    }
+
+    @Override
+    public boolean hasSpecification(String specificationName) {
+        synchronized (serviceLoader) {
+            for (SpecificationLoader loader : serviceLoader) {
+                if (loader.hasSpecification(specificationName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
