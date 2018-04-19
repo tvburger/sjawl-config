@@ -3,7 +3,7 @@ package net.tvburger.sjawl.config.properties;
 
 import net.tvburger.sjawl.common.AssertUtil;
 import net.tvburger.sjawl.config.*;
-import net.tvburger.sjawl.config.ext.SpecificationLoader;
+import net.tvburger.sjawl.config.spi.SpecificationLoader;
 
 import java.io.File;
 import java.io.FileReader;

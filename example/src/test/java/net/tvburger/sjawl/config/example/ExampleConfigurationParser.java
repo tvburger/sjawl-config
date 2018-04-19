@@ -1,10 +1,16 @@
 package net.tvburger.sjawl.config.example;
 
-import net.tvburger.sjawl.config.*;
+import net.tvburger.sjawl.config.InvalidSettingException;
+import net.tvburger.sjawl.config.MissingSettingException;
+import net.tvburger.sjawl.config.Specification;
+import net.tvburger.sjawl.config.impl.AbstractConfigurationParser;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
-public final class ExampleSpecificationParser {
+public final class ExampleConfigurationParser extends AbstractConfigurationParser<ExampleConfiguration> {
 
     public static final class Constants {
 
@@ -20,14 +26,19 @@ public final class ExampleSpecificationParser {
 
     }
 
-    public ExampleConfiguration parseExampleConfiguration(Specification specification) throws MissingSettingException, InvalidSettingException {
+    public ExampleConfigurationParser() {
+        super(ExampleConfiguration.class);
+    }
+
+    @Override
+    public ExampleConfiguration parseConfiguration(Specification specification) throws MissingSettingException, InvalidSettingException {
         return new ExampleConfiguration(
                 parsePlayers(specification),
                 parseMaxGameLength(specification),
                 parseIsSuperGame(specification));
     }
 
-    public Map<String, ExampleConfiguration.Player> parsePlayers(Specification specification) throws MissingSettingException, InvalidSettingException {
+    private Map<String, ExampleConfiguration.Player> parsePlayers(Specification specification) throws MissingSettingException, InvalidSettingException {
         Map<String, ExampleConfiguration.Player> players = new LinkedHashMap<>();
         for (List<String> playerField : specification.getDefined(Constants.FIELD_NAME_PLAYERS)) {
             ExampleConfiguration.Player player = parsePlayer(playerField, specification);
@@ -36,19 +47,19 @@ public final class ExampleSpecificationParser {
         return players;
     }
 
-    public ExampleConfiguration.Player parsePlayer(List<String> playerField, Specification specification) throws MissingSettingException, InvalidSettingException {
+    private ExampleConfiguration.Player parsePlayer(List<String> playerField, Specification specification) throws MissingSettingException, InvalidSettingException {
         int score = ParserUtil.parseInt(playerField, specification);
         String name = playerField.get(playerField.size() - 1);
         return new ExampleConfiguration.Player(name, score);
     }
 
-    public int parseMaxGameLength(Specification specification) throws MissingSettingException, InvalidSettingException {
+    private int parseMaxGameLength(Specification specification) throws MissingSettingException, InvalidSettingException {
         return specification.hasSetting(Constants.FIELD_NAME_MAX_GAME_LENGTH) ?
                 ParserUtil.parseInt(Constants.FIELD_NAME_MAX_GAME_LENGTH, specification) :
                 Constants.DEFAULT_MAX_GAME_LENGTH;
     }
 
-    public boolean parseIsSuperGame(Specification specification) throws MissingSettingException, InvalidSettingException {
+    private boolean parseIsSuperGame(Specification specification) throws MissingSettingException, InvalidSettingException {
         return specification.hasSetting(Constants.FIELD_NAME_IS_SUPER_GAME) ?
                 ParserUtil.parseBoolean(Constants.FIELD_NAME_IS_SUPER_GAME, specification) :
                 Constants.DEFAULT_IS_SUPER_GAME;
