@@ -24,11 +24,6 @@ public final class ExampleConfiguration implements Configuration {
             return score;
         }
 
-        @Override
-        public String toString() {
-            return String.format("Player(%s,%s)", name, score);
-        }
-
     }
 
     private final Map<String, Player> players;

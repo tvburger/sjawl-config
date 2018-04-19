@@ -1,4 +1,4 @@
-package net.tvburger.sjawl.config.ext;
+package net.tvburger.sjawl.config.spi;
 
 import net.tvburger.sjawl.config.NoSuchSpecificationException;
 import net.tvburger.sjawl.config.Specification;
