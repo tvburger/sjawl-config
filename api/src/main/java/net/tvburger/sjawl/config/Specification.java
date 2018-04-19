@@ -57,4 +57,16 @@ public interface Specification extends Iterable<Specification.Setting> {
         return getValue(Arrays.asList(field));
     }
 
+    default <T> T getValue(Class<T> typeClass, List<String> field) throws MissingSettingException, InvalidSettingException {
+        try {
+            return typeClass.cast(getValue(field));
+        } catch (ClassCastException cause) {
+            throw new InvalidSettingException(this, getSetting(field));
+        }
+    }
+
+    default <T> T getValue(Class<T> typeClass, String... field) throws MissingSettingException, InvalidSettingException {
+        return getValue(typeClass, Arrays.asList(field));
+    }
+
 }
