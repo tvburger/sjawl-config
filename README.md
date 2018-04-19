@@ -16,7 +16,7 @@ Specify the avialable loaders using META-INF/services/net.tvburger.sjawl.config.
 
 ## Interpreting a configuration specification
 The logic how to interpret a specification to obtain a configuration can be defined by a ConfigurationParser.
-Specify the available parsers using META-INF/services/net.tvburger.sjwal.config.spi.ConfigurationLoader.
+Specify the available parsers using META-INF/services/net.tvburger.sjwal.config.spi.ConfigurationParser.
 
 
 ## Using a Configuration
