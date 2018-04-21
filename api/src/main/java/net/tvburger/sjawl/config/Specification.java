@@ -1,11 +1,12 @@
 package net.tvburger.sjawl.config;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 public interface Specification extends Iterable<Specification.Setting> {
 
-    class Setting {
+    class Setting implements Serializable {
 
         private final List<String> field;
         private final Object value;
