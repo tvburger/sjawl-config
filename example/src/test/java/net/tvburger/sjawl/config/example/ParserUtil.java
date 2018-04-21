@@ -10,8 +10,8 @@ public final class ParserUtil {
 
     public static int parseInt(List<String> field, Specification specification) throws MissingSettingException, InvalidSettingException {
         try {
-            return Integer.parseInt(String.class.cast(specification.getValue(field)));
-        } catch (NumberFormatException | ClassCastException cause) {
+            return Integer.parseInt(specification.getValue(String.class, field));
+        } catch (NumberFormatException cause) {
             throw new InvalidSettingException(specification, specification.getSetting(field));
         }
     }
@@ -19,7 +19,7 @@ public final class ParserUtil {
     public static boolean parseBoolean(List<String> field, Specification specification) throws MissingSettingException, InvalidSettingException {
         try {
             boolean bool;
-            String value = String.class.cast(specification.getValue(field));
+            String value = specification.getValue(String.class, field);
             switch (value) {
                 case "true":
                     bool = true;
@@ -31,7 +31,7 @@ public final class ParserUtil {
                     throw new InvalidSettingException(specification, specification.getSetting(field));
             }
             return bool;
-        } catch (NumberFormatException | ClassCastException cause) {
+        } catch (NumberFormatException cause) {
             throw new InvalidSettingException(specification, specification.getSetting(field));
         }
     }

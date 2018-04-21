@@ -1,6 +1,8 @@
 package net.tvburger.sjawl.config.impl;
 
-import net.tvburger.sjawl.common.*;
+import net.tvburger.sjawl.common.AssertUtil;
+import net.tvburger.sjawl.common.Cache;
+import net.tvburger.sjawl.common.UnlimitedCache;
 import net.tvburger.sjawl.config.*;
 
 import java.io.IOException;
@@ -25,6 +27,11 @@ public final class ConfigurationCache implements ConfigurationProvider {
     private ConfigurationCache(Cache<Class<?>, Configuration> cache, ConfigurationProvider provider) {
         this.cache = cache;
         this.provider = provider;
+    }
+
+    @Override
+    public <T extends Configuration> boolean hasConfiguration(Class<T> configurationTypeClass) {
+        return cache.has(configurationTypeClass) || provider.hasConfiguration(configurationTypeClass);
     }
 
     @Override

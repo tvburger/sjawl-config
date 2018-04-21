@@ -21,6 +21,8 @@ public interface ConfigurationProvider {
 
     }
 
+    <T extends Configuration> boolean hasConfiguration(Class<T> configurationTypeClass);
+
     <T extends Configuration> T getConfiguration(Class<T> configurationTypeClass) throws NoSuchConfigurationException, NoSuchSpecificationException, IOException, SpecificationFormatException, InvalidSpecificationException;
 
 }

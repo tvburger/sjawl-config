@@ -1,11 +1,12 @@
 package net.tvburger.sjawl.config;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 public interface Specification extends Iterable<Specification.Setting> {
 
-    class Setting {
+    class Setting implements Serializable {
 
         private final List<String> field;
         private final Object value;
@@ -55,6 +56,18 @@ public interface Specification extends Iterable<Specification.Setting> {
 
     default Object getValue(String... field) throws MissingSettingException {
         return getValue(Arrays.asList(field));
+    }
+
+    default <T> T getValue(Class<T> typeClass, List<String> field) throws MissingSettingException, InvalidSettingException {
+        try {
+            return typeClass.cast(getValue(field));
+        } catch (ClassCastException cause) {
+            throw new InvalidSettingException(this, getSetting(field));
+        }
+    }
+
+    default <T> T getValue(Class<T> typeClass, String... field) throws MissingSettingException, InvalidSettingException {
+        return getValue(typeClass, Arrays.asList(field));
     }
 
 }

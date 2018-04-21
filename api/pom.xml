@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.tvburger.sjawl</groupId>
         <artifactId>sjawl-config</artifactId>
-        <version>0.9.0</version>
+        <version>0.9.1</version>
     </parent>
 
     <artifactId>sjawl-config-api</artifactId>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>net.tvburger.sjawl</groupId>
             <artifactId>sjawl-common</artifactId>
-            <version>0.9.0</version>
+            <version>0.9.1</version>
         </dependency>
     </dependencies>
 

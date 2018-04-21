@@ -1,7 +1,12 @@
 package net.tvburger.sjawl.config.impl;
 
-import net.tvburger.sjawl.common.*;
-import net.tvburger.sjawl.config.*;
+import net.tvburger.sjawl.common.AssertUtil;
+import net.tvburger.sjawl.common.Cache;
+import net.tvburger.sjawl.common.UnlimitedCache;
+import net.tvburger.sjawl.config.NoSuchSpecificationException;
+import net.tvburger.sjawl.config.Specification;
+import net.tvburger.sjawl.config.SpecificationFormatException;
+import net.tvburger.sjawl.config.SpecificationProvider;
 
 import java.io.IOException;
 
@@ -25,6 +30,11 @@ public final class SpecificationCache implements SpecificationProvider {
     private SpecificationCache(Cache<String, Specification> cache, SpecificationProvider provider) {
         this.cache = cache;
         this.provider = provider;
+    }
+
+    @Override
+    public boolean hasSpecification(String specificationName) {
+        return cache.has(specificationName) || provider.hasSpecification(specificationName);
     }
 
     @Override

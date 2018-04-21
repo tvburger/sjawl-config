@@ -1,11 +1,13 @@
 package net.tvburger.sjawl.config.impl;
 
 import net.tvburger.sjawl.common.AssertUtil;
-import net.tvburger.sjawl.config.*;
+import net.tvburger.sjawl.config.MissingSettingException;
+import net.tvburger.sjawl.config.Specification;
 
+import java.io.Serializable;
 import java.util.*;
 
-public final class MapSpecification implements Specification {
+public final class MapSpecification implements Specification, Serializable {
 
     public static final class Factory {
 

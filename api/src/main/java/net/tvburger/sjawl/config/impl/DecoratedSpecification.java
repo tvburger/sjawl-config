@@ -6,11 +6,11 @@ import net.tvburger.sjawl.config.Specification;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class DecoratedSpecfication implements Specification {
+public abstract class DecoratedSpecification implements Specification {
 
     protected final Specification specification;
 
-    public DecoratedSpecfication(Specification specification) {
+    public DecoratedSpecification(Specification specification) {
         this.specification = specification;
     }
 

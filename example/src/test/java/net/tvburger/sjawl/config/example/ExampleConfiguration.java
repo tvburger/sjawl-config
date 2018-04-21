@@ -2,11 +2,12 @@ package net.tvburger.sjawl.config.example;
 
 import net.tvburger.sjawl.config.Configuration;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public final class ExampleConfiguration implements Configuration {
+public final class ExampleConfiguration implements Configuration, Serializable {
 
-    public static class Player {
+    public static class Player implements Serializable {
 
         private final String name;
         private final int score;
