@@ -3,11 +3,12 @@ package net.tvburger.sjawl.config.impl;
 import net.tvburger.sjawl.common.AssertUtil;
 import net.tvburger.sjawl.config.MissingSettingException;
 import net.tvburger.sjawl.config.Specification;
+import net.tvburger.sjawl.config.util.SettingUtil;
 
 import java.io.Serializable;
 import java.util.*;
 
-public final class MapSpecification implements Specification, Serializable {
+public class MapSpecification implements Specification, Serializable {
 
     public static final class Factory {
 
@@ -89,9 +90,9 @@ public final class MapSpecification implements Specification, Serializable {
 
     }
 
-    private final Map<List<String>, Object> settingsMap;
+    private Map<List<String>, Object> settingsMap;
 
-    MapSpecification(Map<List<String>, Object> settingsMap) {
+    protected MapSpecification(Map<List<String>, Object> settingsMap) {
         this.settingsMap = settingsMap;
     }
 

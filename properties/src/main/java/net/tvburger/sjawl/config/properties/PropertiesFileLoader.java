@@ -2,7 +2,8 @@ package net.tvburger.sjawl.config.properties;
 
 
 import net.tvburger.sjawl.common.AssertUtil;
-import net.tvburger.sjawl.config.*;
+import net.tvburger.sjawl.config.NoSuchSpecificationException;
+import net.tvburger.sjawl.config.Specification;
 import net.tvburger.sjawl.config.spi.SpecificationLoader;
 
 import java.io.File;

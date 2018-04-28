@@ -4,6 +4,7 @@ import net.tvburger.sjawl.config.InvalidSettingException;
 import net.tvburger.sjawl.config.MissingSettingException;
 import net.tvburger.sjawl.config.Specification;
 import net.tvburger.sjawl.config.impl.AbstractConfigurationParser;
+import net.tvburger.sjawl.config.util.ParserUtil;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

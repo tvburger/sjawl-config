@@ -1,7 +1,4 @@
-package net.tvburger.sjawl.config.impl;
-
-import net.tvburger.sjawl.config.InvalidSettingException;
-import net.tvburger.sjawl.config.Specification;
+package net.tvburger.sjawl.config.util;
 
 import java.util.List;
 

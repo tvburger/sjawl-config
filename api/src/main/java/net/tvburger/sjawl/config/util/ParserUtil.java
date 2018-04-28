@@ -1,4 +1,4 @@
-package net.tvburger.sjawl.config.example;
+package net.tvburger.sjawl.config.util;
 
 import net.tvburger.sjawl.config.InvalidSettingException;
 import net.tvburger.sjawl.config.MissingSettingException;
